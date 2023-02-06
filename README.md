@@ -23,3 +23,13 @@ Me and my Team-mate create this project where a user can put Banglish word and i
     2. banGenerator.csv
   - Build code.
   - Update plan and structure.
+
+# Task for week 3 ():
+
+  - Find resource or create database:
+    3. BengaliWordList_40.txt
+    4. BengaliWordList_48.txt
+    5. BengaliWordList_112.txt
+    6. BengaliWordList_439.txt
+  - Build code.
+  - Update plan and structure.

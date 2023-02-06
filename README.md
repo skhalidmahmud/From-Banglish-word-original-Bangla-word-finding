@@ -19,20 +19,26 @@ Me and my Team-mate create this project where a user can put Banglish word and i
 # Task for week 2 ():
 
   - [x] Find resource or create database:
-    1. ben2bn.csv
-    2. banGenerator.csv
+    - ben2bn.csv
+    - banGenerator.csv
   - [x] Build code.
   - [x] Update plan and structure.
 
 # Task for week 3 ():
 
   - [x] Find resource or create database:
-    1. BengaliWordList_40.txt
-    2. BengaliWordList_48.txt
-    3. BengaliWordList_112.txt
-    4. BengaliWordList_439.txt
+    - BengaliWordList_40.txt
+    - BengaliWordList_48.txt
+    - BengaliWordList_112.txt
+    - BengaliWordList_439.txt
   - [x] Build code.
   - [x] Update plan and structure.
+
+# Task for week 4 ():
+
+  - [] Build code.
+  - [] Update plan and structure.
+  - [] Debug it.
 
 # Project plans:
 

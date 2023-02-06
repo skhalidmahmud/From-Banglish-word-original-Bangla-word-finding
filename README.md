@@ -8,4 +8,16 @@ This is a project for our course: "Project Management". Me and my Team-mate crea
 
 # Task for week 1 ():
 
+  - After decide (Plan):
+    - how to work it.
+    - how can we design it.
+    - where put it.
+    - how many applications in here.
+    - etc.
+
 # Task for week 2 ():
+
+  - Find resource or create database:
+    1. ben2bn.csv
+    2. banGenerator.csv
+  - Update plan and structure.

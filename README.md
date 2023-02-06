@@ -1,6 +1,7 @@
 # From Banglish word original Bangla word finding
 
-This is a project for our course: "Project Management". Me and my Team-mate create this project where a user can …….
+This is a project for our course: "Project Management".
+Me and my Team-mate create this project where a user can put Banglish word and it can generate or finding original Bangla word.
 
 ### Group Members:
 - *_[Khalid Mahmud](https://github.com/skhalidmahmud)_*

@@ -10,44 +10,44 @@ Me and my Team-mate create this project where a user can put Banglish word and i
 # Task for week 1 ():
 
   - After decide (Plan):
-    - how to work it.
-    - how can we design it.
-    - where put it.
-    - how many applications in here.
+    - [x] how to work it.
+    - [x] how can we design it.
+    - [x] where put it.
+    - [x] how many applications in here.
     - etc.
 
 # Task for week 2 ():
 
-  - Find resource or create database:
+  - [x] Find resource or create database:
     1. ben2bn.csv
     2. banGenerator.csv
-  - Build code.
-  - Update plan and structure.
+  - [x] Build code.
+  - [x] Update plan and structure.
 
 # Task for week 3 ():
 
-  - Find resource or create database:
+  - [x] Find resource or create database:
     1. BengaliWordList_40.txt
     2. BengaliWordList_48.txt
     3. BengaliWordList_112.txt
     4. BengaliWordList_439.txt
-  - Build code.
-  - Update plan and structure.
+  - [x] Build code.
+  - [x] Update plan and structure.
 
 # Project plans:
 
-  - Import file form PY library:
-  - Load all Database:
+  - [x] Import file form PY library:
+  - [x] Load all Database:
     - Load Banglish to Bangla dataset:
     - Load Banglish to Bangla generator dataset as "data":
     - Load Bangla word list as Bwl_40, Bwl_48, Bwl_112, Bwl_439:
-  - Get input from user:
-  - Compare get data with B2B dataset:
+  - [x] Get input from user:
+  - [x] Compare get data with B2B dataset:
     - If available: then return Bangla word and exit.
-  - Split data:
-  - Try to generate (one or more then one) bangla word:
-  - Check and matching generate text with database data:
+  - [x] Split data:
+  - [x] Try to generate (one or more then one) bangla word:
+  - [x] Check and matching generate text with database data:
     - If match: then return Bangla word.
-  - Add this data in B2B database and exit.
+  - [x] Add this data in B2B database and exit.
 
 :)

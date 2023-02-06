@@ -20,4 +20,5 @@ This is a project for our course: "Project Management". Me and my Team-mate crea
   - Find resource or create database:
     1. ben2bn.csv
     2. banGenerator.csv
+  - Build code.
   - Update plan and structure.

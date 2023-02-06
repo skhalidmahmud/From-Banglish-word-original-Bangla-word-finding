@@ -36,9 +36,9 @@ Me and my Team-mate create this project where a user can put Banglish word and i
 
 # Task for week 4 ():
 
-  - [] Build code.
-  - [] Update plan and structure.
-  - [] Debug it.
+  - [ ] Build code.
+  - [ ] Update plan and structure.
+  - [ ] Debug it.
 
 # Project plans:
 

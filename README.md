@@ -27,9 +27,27 @@ Me and my Team-mate create this project where a user can put Banglish word and i
 # Task for week 3 ():
 
   - Find resource or create database:
-    1. BengaliWordList_40.txt
-    2. BengaliWordList_48.txt
-    3. BengaliWordList_112.txt
-    4. BengaliWordList_439.txt
+    3. BengaliWordList_40.txt
+    4. BengaliWordList_48.txt
+    5. BengaliWordList_112.txt
+    6. BengaliWordList_439.txt
   - Build code.
   - Update plan and structure.
+
+# Project plans:
+
+  - Import file form PY library:
+  - Load all Database:
+    - Load Banglish to Bangla dataset:
+    - Load Banglish to Bangla generator dataset as "data":
+    - Load Bangla word list as Bwl_40, Bwl_48, Bwl_112, Bwl_439:
+  - Get input from user:
+  - Compare get data with B2B dataset:
+    - If available: then return Bangla word and exit.
+  - Split data:
+  - Try to generate (one or more then one) bangla word:
+  - Check and matching generate text with database data:
+    - If match: then return Bangla word.
+  - Add this data in B2B database and exit.
+
+:)

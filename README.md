@@ -4,6 +4,7 @@ This is a project for our course: "Project Management".
 Me and my Team-mate create this project where a user can put Banglish word and it can generate or finding original Bangla word.
 
 ### Group Members:
+
 - *_[Khalid Mahmud](https://github.com/skhalidmahmud)_*
 - *_[Antora Ghosh](https://github.com/antoraghosh)_*
 
@@ -61,8 +62,22 @@ Me and my Team-mate create this project where a user can put Banglish word and i
   - [x] Check and matching generate text with database data:
     - If match: then return Bangla word.
   - [x] Add this data in B2B database and exit.
+
+## Rules for splitting data:
+
+  - [x] Get data in a for loop:
+    - if next array is empty: then split it and store it.
+    - if current letter is vowel and next letter also, then add it.
+    - if current letter is vowel and next letter consonant, then split it and add next array.
+    - if current letter is consonant and next letter also, then add it.
+    - if current letter is consonant and next letter vowel, then split it and add next array.
+  - [x] then can we get a array like:
+    - arr[] = "moumita" / "sabbir"
+    - then, sArr[] = 'm', 'ou', 'm', 'i', 't', 'a' / 's', 'a', 'bb', 'i', 'r'.
+  - [x] successfully done split process for BANGLISH words.
   
 ## About database or dataset:
+
   - Banglish to Bangla dataset: this is a CSV file and here have data like:
     - Banglish,Bangla
     - amar,আমার
@@ -135,6 +150,7 @@ Me and my Team-mate create this project where a user can put Banglish word and i
     - ...
 
 # This txt file collect from [BengaliDictionary](https://github.com/MinhasKamal/BengaliDictionary):
+
 [BengaliWordList_40.txt](https://github.com/skhalidmahmud/From-Banglish-word-original-Bangla-word-finding/files/10685056/BengaliWordList_40.txt)
 [BengaliWordList_48.txt](https://github.com/skhalidmahmud/From-Banglish-word-original-Bangla-word-finding/files/10685060/BengaliWordList_48.txt)
 [BengaliWordList_112.txt](https://github.com/skhalidmahmud/From-Banglish-word-original-Bangla-word-finding/files/10685062/BengaliWordList_112.txt)

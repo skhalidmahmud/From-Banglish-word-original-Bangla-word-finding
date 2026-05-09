@@ -41,11 +41,12 @@ Me and my Team-mate create this project where a user can put Banglish word and i
   - [X] Update plan and structure.
   - [X] Debug it.
   
-# Task for week 5 ():
 
-  - [ ] Build code.
-  - [ ] Update plan and structure.
-  - [ ] Debug it.
+# Task for week 5 (Stability & Modularization):
+
+  - [x] Build code: Refactored into a modular `BanglishConverter` class.
+  - [x] Update plan and structure: Implemented recursive candidate generation and automated dictionary validation.
+  - [x] Debug it: Fixed terminal encoding issues and improved phonetic splitting.
 
 # Project plans:
 
@@ -62,6 +63,8 @@ Me and my Team-mate create this project where a user can put Banglish word and i
   - [x] Check and matching generate text with database data:
     - If match: then return Bangla word.
   - [x] Add this data in B2B database and exit.
+  - [x] **New: Smart Candidate Generation**: If a word isn't found, the system tries all possible Bangla character combinations and validates them against 4 different dictionary files (400k+ words).
+  - [x] **New: Automated Learning**: Once a valid word is found through generation, it is automatically appended to the permanent `ben2bn.csv` database.
 
 ## Rules for splitting data:
 

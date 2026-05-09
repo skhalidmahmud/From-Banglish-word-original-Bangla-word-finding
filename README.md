@@ -1,160 +1,62 @@
-# From Banglish word original Bangla word finding
+# 🇧🇩 Banglish-to-Bangla: Phonetic Smart Converter
 
-This is a project for our course: "Project Management".
-Me and my Team-mate create this project where a user can put Banglish word and it can generate or finding original Bangla word.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 
-### Group Members:
+A rule-based and dictionary-validated NLP tool designed to convert Romanized Bengali (Banglish) into original Bangla script. This project leverages recursive phonetic mapping and automated dictionary validation to ensure high accuracy in transliteration.
 
-- *_[Khalid Mahmud](https://github.com/skhalidmahmud)_*
-- *_[Antora Ghosh](https://github.com/antoraghosh)_*
+## 🚀 Key Features
+- **Smart Phonetic Splitting**: Intelligently breaks down Banglish words into phonetic components (e.g., `kh`, `sh`, `aa`).
+- **Recursive Candidate Generation**: Explores multiple Bangla character possibilities for each English letter.
+- **Dictionary Validation**: Validates generated candidates against a massive 400,000+ word Bengali dictionary.
+- **Self-Learning Engine**: Automatically saves newly discovered mappings to a persistent database (`ben2bn.csv`).
 
-# Task for week 1 ():
+## 🛠️ Tech Stack
+- **Language**: Python 3.12
+- **Data Formats**: CSV (Phonetic mappings), TXT (Dictionary word lists)
+- **Algorithms**: Recursive Search, String Tokenization, Set-based Lookup
 
-  - After decide (Plan):
-    - [x] how to work it.
-    - [x] how can we design it.
-    - [x] where put it.
-    - [x] how many applications in here.
-    - etc.
+## 👥 The Team
+This project was developed as part of the "Project Management" course by:
+- **[Khalid Mahmud](https://github.com/skhalidmahmud)**
+- **[Antora Ghosh](https://github.com/antoraghosh)**
 
-# Task for week 2 ():
+---
 
-  - [x] Find resource or create database:
-    - ben2bn.csv
-    - banGenerator.csv
-  - [x] Build code.
-  - [x] Update plan and structure.
+## 📅 Development Roadmap
 
-# Task for week 3 ():
+### ✅ Phase 1: Planning & Design
+- Defined splitting rules for vowels and consonants.
+- Designed the core data structure for phonetic mapping.
 
-  - [x] Find resource or create database:
-    - BengaliWordList_40.txt
-    - BengaliWordList_48.txt
-    - BengaliWordList_112.txt
-    - BengaliWordList_439.txt
-  - [x] Build code.
-  - [x] Update plan and structure.
+### ✅ Phase 2: Database Construction
+- Compiled `banGenerator.csv` with multi-character mapping.
+- Integrated 4 major Bengali word lists (40k, 48k, 112k, 439k words).
 
-# Task for week 4 ():
+### ✅ Phase 3: Engine Development (Week 5)
+- **Modularization**: Refactored notebook code into a robust `BanglishConverter` class.
+- **Recursive Logic**: Implemented smart candidate generation to handle ambiguous vowels.
+- **UTF-8 Support**: Fixed Windows terminal encoding issues for native script display.
 
-  - [X] Build code.
-  - [X] Update plan and structure.
-  - [X] Debug it.
-  
+### ⏳ Phase 4: Expansion (Coming Soon)
+- [ ] Graphical User Interface (GUI) for desktop use.
+- [ ] Support for complex conjuncts (যুক্তবর্ণ) improvement.
+- [ ] Web-based API for integration into other apps.
 
-# Task for week 5 (Stability & Modularization):
+---
 
-  - [x] Build code: Refactored into a modular `BanglishConverter` class.
-  - [x] Update plan and structure: Implemented recursive candidate generation and automated dictionary validation.
-  - [x] Debug it: Fixed terminal encoding issues and improved phonetic splitting.
+## 💻 Installation & Usage
 
-# Project plans:
+### 1. Clone the repository
+```bash
+git clone https://github.com/skhalidmahmud/From-Banglish-word-original-Bangla-word-finding.git
+cd From-Banglish-word-original-Bangla-word-finding
+```
 
-  - [x] Import file form PY library:
-  - [x] Load all Database:
-    - Load Banglish to Bangla dataset as "b2bRows":
-    - Load Banglish to Bangla generator dataset as "data":
-    - Load Bangla word list as Bwl_40, Bwl_48, Bwl_112, Bwl_439: [Here Bwl = Bangla word list]
-  - [x] Get input from user:
-  - [x] Compare get data with B2B dataset:
-    - If available: then return Bangla word and exit.
-  - [x] Split data:
-  - [x] Try to generate (one or more then one) bangla word:
-  - [x] Check and matching generate text with database data:
-    - If match: then return Bangla word.
-  - [x] Add this data in B2B database and exit.
-  - [x] **New: Smart Candidate Generation**: If a word isn't found, the system tries all possible Bangla character combinations and validates them against 4 different dictionary files (400k+ words).
-  - [x] **New: Automated Learning**: Once a valid word is found through generation, it is automatically appended to the permanent `ben2bn.csv` database.
+### 2. Run the Converter
+```bash
+python converter.py
+```
 
-## Rules for splitting data:
-
-  - [x] Get data in a for loop:
-    - if next array is empty: then split it and store it.
-    - if current letter is vowel and next letter also, then add it.
-    - if current letter is vowel and next letter consonant, then split it and add next array.
-    - if current letter is consonant and next letter also, then add it.
-    - if current letter is consonant and next letter vowel, then split it and add next array.
-  - [x] then can we get a array like:
-    - arr[] = "moumita" / "sabbir"
-    - then, sArr[] = 'm', 'ou', 'm', 'i', 't', 'a' / 's', 'a', 'bb', 'i', 'r'.
-  - [x] successfully done split process for BANGLISH words.
-  
-## About database or dataset:
-
-  - Banglish to Bangla dataset: this is a CSV file and here have data like:
-    - Banglish,Bangla
-    - amar,আমার
-    - name,নাম
-    - khalid,খালিদ
-    - ami,আমি
-    - valo,ভালো
-    - achi,আছি
-    - nei,নেই
-    - ...
-    
-  - Load Banglish to Bangla generator dataset: this is a CSV file and here have data like:
-    - a,া,অ
-    - aa,আ
-    - i,ি,ই
-    - ii,ী,ঈ
-    - u,ু,উ
-    - oo,ূ,ঊ
-    - ri,ৃ,ঋ
-    - e,ে,এ
-    - o,ৈ,ঐ
-    - o,ো,ও
-    - ou,ৌ,ঔ
-    - k,ক
-    - kh,খ
-    - g,গ
-    - gh,ঘ
-    - anga,ঙ
-    - ...
-    
-- Bwl_40 txt word list: this is a txt file and here have data like:
-    BengaliWordList_40.txt:
-    - যে
-    - যেথা
-    - যেথাসেথা
-    - যেথাকার
-    - যেগুলো
-    - যেকোন
-    - যেহেতু
-    - ...
-- Bwl_48 txt word list: this is a txt file and here have data like:
-    BengaliWordList_48.txt:
-    - অ
-    - অ-কার
-    - অংশ
-    - অংশক
-    - অংশকল্পনা
-    - অংশগত
-    - অংশগ্রাহী
-    - ...
-- Bwl_112 txt word list: this is a txt file and here have data like:
-    BengaliWordList_112.txt:
-    - অ
-    - অংশ
-    - অংশগ্রহণ
-    - অংশগ্রহণকারী
-    - অংশতঃ
-    - অংশাঙ্কিত
-    - অংশিত
-    - ...
-- Bwl_439 txt word list: this is a txt file and here have data like:
-    BengaliWordList_439.txt:
-    - অই
-    - অইউরোপীয়
-    - অইগেছে
-    - অইগেল
-    - অইচি
-    - অইচে
-    - অইছি
-    - ...
-
-# This txt file collect from [BengaliDictionary](https://github.com/MinhasKamal/BengaliDictionary):
-
-[BengaliWordList_40.txt](https://github.com/skhalidmahmud/From-Banglish-word-original-Bangla-word-finding/files/10685056/BengaliWordList_40.txt)
-[BengaliWordList_48.txt](https://github.com/skhalidmahmud/From-Banglish-word-original-Bangla-word-finding/files/10685060/BengaliWordList_48.txt)
-[BengaliWordList_112.txt](https://github.com/skhalidmahmud/From-Banglish-word-original-Bangla-word-finding/files/10685062/BengaliWordList_112.txt)
-[BengaliWordList_439.txt](https://github.com/skhalidmahmud/From-Banglish-word-original-Bangla-word-finding/files/10685063/BengaliWordList_439.txt)
+## 📄 License
+Distributed under the MIT License. See `LICENSE` for more information.

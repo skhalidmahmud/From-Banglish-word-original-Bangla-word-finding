@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Mahmud"
+  given-names: "Khalid"
+- family-names: "Ghosh"
+  given-names: "Antora"
+title: "Banglish-to-Bangla Phonetic Smart Converter"
+version: 0.2.0
+date-released: 2026-05-09
+url: "https://github.com/skhalidmahmud/From-Banglish-word-original-Bangla-word-finding"

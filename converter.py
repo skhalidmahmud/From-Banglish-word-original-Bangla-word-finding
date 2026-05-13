@@ -42,13 +42,25 @@ class BanglishConverter:
                     self.generator_map[eng] = bangla_options
 
         # 3. Load Word Lists (The "dictionaries")
-        for list_name in ['BengaliWordList_40.txt', 'BengaliWordList_48.txt', 
-                         'BengaliWordList_112.txt', 'BengaliWordList_439.txt']:
+        self.word_weights = {} # word -> weight (lower is more common)
+        
+        dict_files = [
+            ('BengaliWordList_40.txt', 1),
+            ('BengaliWordList_48.txt', 2),
+            ('BengaliWordList_112.txt', 3),
+            ('BengaliWordList_439.txt', 4)
+        ]
+
+        for list_name, weight in dict_files:
             path = os.path.join(self.data_dir, list_name)
             if os.path.exists(path):
                 with open(path, encoding='utf-8-sig') as f:
-                    # Using a set for lightning-fast lookups
-                    self.word_lists.append(set(f.read().splitlines()))
+                    for word in f.read().splitlines():
+                        word = word.strip()
+                        if not word: continue
+                        # Only update if new weight is lower (more common)
+                        if word not in self.word_weights or weight < self.word_weights[word]:
+                            self.word_weights[word] = weight
 
     def split_banglish(self, word):
         """Splits banglish word into the longest possible phonemes found in map."""
@@ -75,11 +87,15 @@ class BanglishConverter:
         return phoneme in self.generator_map and phoneme not in self.vowels
 
     def is_valid_word(self, word):
-        """Checks if the generated Bangla word exists in any of our dictionaries."""
-        for w_list in self.word_lists:
-            if word in w_list:
-                return True
-        return False
+        """Checks if the generated Bangla word exists in our weighted dictionaries."""
+        return hasattr(self, 'word_weights') and word in self.word_weights
+
+    def get_word_priority(self, word):
+        """Returns a priority score (lower is better). Weight is primary, length is secondary."""
+        # Weight 1-4 from dictionaries. If not found, weight 5 (guess).
+        weight = self.word_weights.get(word, 5)
+        # Use a tuple for sorting: (Weight, Length)
+        return (weight, len(word))
 
     def convert(self, banglish_word):
         # Handle empty or whitespace
@@ -130,16 +146,15 @@ class BanglishConverter:
                 candidates = candidates[:10000]
 
         # Step 3: Find the first candidate that is a real Bangla word
-        # We sort by length to favor natural joins if possible, 
-        # but dictionary validation is the primary filter.
+        # We use frequency weights and length as heuristics.
         valid_candidates = []
         for cand_str, _ in candidates:
             if self.is_valid_word(cand_str):
                 valid_candidates.append(cand_str)
         
         if valid_candidates:
-            # Pick the shortest valid one (usually the most correct conjunct form)
-            best = min(valid_candidates, key=len)
+            # Pick the candidate with the best priority (lowest weight, then shortest)
+            best = min(valid_candidates, key=lambda x: self.get_word_priority(x))
             self.save_new_mapping(banglish_word, best)
             return best
         

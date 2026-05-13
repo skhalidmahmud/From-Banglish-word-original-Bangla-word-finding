@@ -26,9 +26,16 @@ This will install dependencies and start the local server.
 ```bash
 python run.py
 ```
-Then open your browser at **http://localhost:8000**.
+Then open your browser at **http://localhost:8080**.
 
-### 3. CLI Mode
+### 3. Using Docker
+If you have Docker installed:
+```bash
+docker build -t banglish-converter .
+docker run -p 8080:8080 banglish-converter
+```
+
+### 4. CLI Mode
 For a simple terminal-based experience:
 ```bash
 python converter.py
@@ -36,7 +43,7 @@ python converter.py
 
 ## 🛠️ API Documentation
 The backend is powered by FastAPI. Once running, you can access:
-- **Interactive Docs**: `http://localhost:8000/docs`
+- **Interactive Docs**: `http://localhost:8080/docs`
 - **Conversion Endpoint**: `POST /convert` with body `{"text": "your banglish text"}`
 
 ## 📄 License

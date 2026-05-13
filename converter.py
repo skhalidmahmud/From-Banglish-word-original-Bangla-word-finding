@@ -73,6 +73,10 @@ class BanglishConverter:
         return False
 
     def convert(self, banglish_word):
+        # Handle empty or whitespace
+        if not banglish_word or not banglish_word.strip():
+            return banglish_word
+
         banglish_word = banglish_word.lower()
         
         # Step 1: Check if we already know this exact word
@@ -81,12 +85,14 @@ class BanglishConverter:
 
         # Step 2: Split and Generate candidates
         phonemes = self.split_banglish(banglish_word)
-        
+        if not phonemes:
+            return banglish_word
+
         # Simple recursive generator to try combinations
         candidates = [""]
-        for i, p in enumerate(phonemes):
+        for p in phonemes:
             new_candidates = []
-            options = self.generator_map.get(p, [])
+            options = self.generator_map.get(p, [p]) # Fallback to original if not found
             
             for cand in candidates:
                 for opt in options:
@@ -94,8 +100,8 @@ class BanglishConverter:
             candidates = new_candidates
             
             # To prevent memory explosion, we limit candidates
-            if len(candidates) > 1000:
-                candidates = candidates[:1000]
+            if len(candidates) > 500:
+                candidates = candidates[:500]
 
         # Step 3: Find the first candidate that is a real Bangla word
         for cand in candidates:
@@ -105,17 +111,45 @@ class BanglishConverter:
                 return cand
         
         # If nothing found, return the first "best guess"
-        return candidates[0] if candidates else "Not found"
+        return candidates[0] if candidates else banglish_word
+
+    def convert_sentence(self, text):
+        """Converts a full sentence of Banglish text to Bangla."""
+        import re
+        # Split by spaces and punctuation, but keep them
+        tokens = re.split(r'(\s+|[.,!?;:])', text)
+        result = []
+        for token in tokens:
+            if not token or not token.strip() or re.match(r'[.,!?;:]', token):
+                result.append(token)
+            else:
+                result.append(self.convert(token))
+        return "".join(result)
 
     def save_new_mapping(self, eng, ban):
         b2b_path = os.path.join(self.data_dir, 'ben2bn.csv')
-        self.b2b_map[eng] = ban
-        with open(b2b_path, 'a', encoding='utf-8-sig', newline='') as f:
-            writer = csv.writer(f)
-            writer.writerow([eng, ban])
+        # Only add if not already present
+        if eng not in self.b2b_map:
+            self.b2b_map[eng] = ban
+            try:
+                with open(b2b_path, 'a', encoding='utf-8-sig', newline='') as f:
+                    writer = csv.writer(f)
+                    writer.writerow([eng, ban])
+            except Exception as e:
+                print(f"Error saving mapping: {e}")
 
 # Testing the logic
 if __name__ == "__main__":
     conv = BanglishConverter()
-    test_word = input("Enter Banglish: ")
-    print(f"Bangla Result: {conv.convert(test_word)}")
+    print("Banglish to Bangla Converter (Sentence Mode)")
+    print("Type 'exit' to quit.")
+    while True:
+        try:
+            test_text = input("\nEnter Banglish: ")
+            if test_text.lower() == 'exit':
+                break
+            print(f"Bangla Result: {conv.convert_sentence(test_text)}")
+        except EOFError:
+            break
+        except KeyboardInterrupt:
+            break

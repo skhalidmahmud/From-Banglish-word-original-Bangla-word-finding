@@ -6,44 +6,12 @@
 A rule-based and dictionary-validated NLP tool designed to convert Romanized Bengali (Banglish) into original Bangla script. This project leverages recursive phonetic mapping and automated dictionary validation to ensure high accuracy in transliteration.
 
 ## 🚀 Key Features
-- **Smart Phonetic Splitting**: Intelligently breaks down Banglish words into phonetic components (e.g., `kh`, `sh`, `aa`).
-- **Recursive Candidate Generation**: Explores multiple Bangla character possibilities for each English letter.
-- **Dictionary Validation**: Validates generated candidates against a massive 400,000+ word Bengali dictionary.
-- **Self-Learning Engine**: Automatically saves newly discovered mappings to a persistent database (`ben2bn.csv`).
-
-## 🛠️ Tech Stack
-- **Language**: Python 3.12
-- **Data Formats**: CSV (Phonetic mappings), TXT (Dictionary word lists)
-- **Algorithms**: Recursive Search, String Tokenization, Set-based Lookup
-
-## 👥 The Team
-This project was developed as part of the "Project Management" course by:
-- **[Khalid Mahmud](https://github.com/skhalidmahmud)**
-- **[Antora Ghosh](https://github.com/antoraghosh)**
-
----
-
-## 📅 Development Roadmap
-
-### ✅ Phase 1: Planning & Design
-- Defined splitting rules for vowels and consonants.
-- Designed the core data structure for phonetic mapping.
-
-### ✅ Phase 2: Database Construction
-- Compiled `banGenerator.csv` with multi-character mapping.
-- Integrated 4 major Bengali word lists (40k, 48k, 112k, 439k words).
-
-### ✅ Phase 3: Engine Development (Week 5)
-- **Modularization**: Refactored notebook code into a robust `BanglishConverter` class.
-- **Recursive Logic**: Implemented smart candidate generation to handle ambiguous vowels.
-- **UTF-8 Support**: Fixed Windows terminal encoding issues for native script display.
-
-### ⏳ Phase 4: Expansion (Coming Soon)
-- [ ] Graphical User Interface (GUI) for desktop use.
-- [ ] Support for complex conjuncts (যুক্তবর্ণ) improvement.
-- [ ] Web-based API for integration into other apps.
-
----
+- **Modern Web UI**: A stunning glassmorphic interface for real-time conversion.
+- **FastAPI Backend**: High-performance API for integration into other apps.
+- **Smart Phonetic Splitting**: Intelligently breaks down Banglish words into phonetic components.
+- **Recursive Candidate Generation**: Explores multiple Bangla character possibilities.
+- **Dictionary Validation**: Validates generated candidates against 400,000+ words.
+- **Self-Learning Engine**: Automatically saves newly discovered mappings.
 
 ## 💻 Installation & Usage
 
@@ -53,10 +21,23 @@ git clone https://github.com/skhalidmahmud/From-Banglish-word-original-Bangla-wo
 cd From-Banglish-word-original-Bangla-word-finding
 ```
 
-### 2. Run the Converter
+### 2. Start the Web App (Recommended)
+This will install dependencies and start the local server.
+```bash
+python run.py
+```
+Then open your browser at **http://localhost:8000**.
+
+### 3. CLI Mode
+For a simple terminal-based experience:
 ```bash
 python converter.py
 ```
+
+## 🛠️ API Documentation
+The backend is powered by FastAPI. Once running, you can access:
+- **Interactive Docs**: `http://localhost:8000/docs`
+- **Conversion Endpoint**: `POST /convert` with body `{"text": "your banglish text"}`
 
 ## 📄 License
 Distributed under the MIT License. See `LICENSE` for more information.

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banglish to Bangla | Smart Phonetic Converter</title>
+    <meta name="description" content="Convert Romanized Bengali (Banglish) to original Bangla script with high accuracy using our smart phonetic engine.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="app-container">
+        <header class="app-header">
+            <h1 id="main-title">Banglish <span class="accent">to</span> Bangla</h1>
+            <p class="subtitle">Smart Phonetic Transliteration Engine</p>
+        </header>
+
+        <section class="converter-card">
+            <div class="input-group">
+                <label for="banglish-input">Banglish Input</label>
+                <textarea id="banglish-input" placeholder="Type here (e.g., kemon acho?)" spellcheck="false"></textarea>
+                <div class="input-meta">
+                    <span id="char-count">0 characters</span>
+                    <button id="clear-btn" class="text-btn">Clear</button>
+                </div>
+            </div>
+
+            <div class="divider">
+                <div class="icon-circle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>
+                </div>
+            </div>
+
+            <div class="output-group">
+                <label for="bangla-output">Bangla Result</label>
+                <div class="output-wrapper">
+                    <textarea id="bangla-output" readonly placeholder="বাংলা ফলাফল এখানে আসবে..."></textarea>
+                    <button id="copy-btn" class="icon-btn" title="Copy to clipboard">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="app-footer">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-value" id="stat-words">0</span>
+                    <span class="stat-label">Dict Words</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="stat-known">0</span>
+                    <span class="stat-label">Learned</span>
+                </div>
+            </div>
+            <p class="copyright">Built with ❤️ by Khalid Mahmud</p>
+        </footer>
+    </main>
+
+    <div id="toast" class="toast">Copied to clipboard!</div>
+
+    <script src="script.js"></script>
+</body>
+</html>

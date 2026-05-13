@@ -7,8 +7,13 @@ if sys.stdout.encoding != 'utf-8':
     sys.stdout.reconfigure(encoding='utf-8')
 
 class BanglishConverter:
-    def __init__(self, data_dir='./data'):
-        self.data_dir = data_dir
+    def __init__(self, data_dir=None):
+        if data_dir is None:
+            # Get the directory where converter.py is located
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            self.data_dir = os.path.join(current_dir, 'data')
+        else:
+            self.data_dir = data_dir
         self.b2b_map = {}
         self.generator_map = {}
         self.word_lists = []

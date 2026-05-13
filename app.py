@@ -45,9 +45,11 @@ async def get_stats():
     }
 
 # Serve static files (Frontend)
-if os.path.exists("./static"):
-    app.mount("/", StaticFiles(directory="static", html=True), name="static")
+current_dir = os.path.dirname(os.path.abspath(__file__))
+static_dir = os.path.join(current_dir, "static")
+if os.path.exists(static_dir):
+    app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8080)

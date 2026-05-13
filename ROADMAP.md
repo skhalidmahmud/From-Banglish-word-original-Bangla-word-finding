@@ -8,16 +8,17 @@ The goal of this project is to create the most accurate and easy-to-use Banglish
 - [x] Modular Python class structure.
 - [x] Recursive candidate generation.
 
-## 📍 Phase 2: User Experience (In Progress)
-- [ ] **Desktop GUI**: Build a `tkinter` or `PyQt` based interface.
-- [ ] **Real-time Conversion**: Convert text as the user types.
-- [ ] **Copy-to-Clipboard**: Quick button to copy generated Bangla text.
+## 📍 Phase 2: User Experience (Completed)
+- [x] **Desktop GUI**: Built a modern PWA-ready web interface.
+- [x] **Real-time Conversion**: Instant transliteration.
+- [x] **Copy-to-Clipboard**: Quick copy button with toast notifications.
 
-## 📍 Phase 3: Advanced NLP (Planned)
-- [ ] **Conjunct (যুক্তবর্ণ) Refinement**: Improve the handling of complex joined characters.
-- [ ] **Contextual Prediction**: Use basic NLP to guess the right word based on the sentence.
-- [ ] **Web API**: Deploy the engine as a Flask/FastAPI service.
+## 📍 Phase 3: Advanced NLP (Completed)
+- [x] **Conjunct (যুক্তবর্ণ) Refinement**: Smart Hasanta insertion logic.
+- [x] **Contextual Prediction**: Dictionary-based weighting.
+- [x] **Web API**: FastAPI service fully operational.
 
-## 📍 Phase 4: Mobile & Browser
-- [ ] **Chrome Extension**: Convert Banglish to Bangla on social media sites.
-- [ ] **Mobile App**: A simple Android/iOS keyboard or converter.
+## 📍 Phase 4: Mobile & Browser (Completed)
+- [x] **PWA Support**: Installable on Mobile/Desktop.
+- [x] **Voice Support**: Speech-to-Banglish integration.
+- [x] **Chrome Extension**: Ready for deployment.

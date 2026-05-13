@@ -9,7 +9,38 @@ const statKnown = document.getElementById('stat-known');
 
 const voiceBtn = document.getElementById('voice-btn');
 
+const historyList = document.getElementById('history-list');
+
 let debounceTimer;
+
+// History Logic
+function saveToHistory(banglish, bangla) {
+    if (!banglish || !bangla) return;
+    let history = JSON.parse(localStorage.getItem('banglish_history') || '[]');
+    // Remove if already exists (to move to top)
+    history = history.filter(item => item.banglish !== banglish);
+    history.unshift({ banglish, bangla, time: new Date().toISOString() });
+    history = history.slice(0, 10); // Keep last 10
+    localStorage.setItem('banglish_history', JSON.stringify(history));
+    renderHistory();
+}
+
+function renderHistory() {
+    if (!historyList) return;
+    const history = JSON.parse(localStorage.getItem('banglish_history') || '[]');
+    historyList.innerHTML = history.map(item => `
+        <div class="history-item" onclick="loadHistory('${item.banglish}')">
+            <span class="h-banglish">${item.banglish}</span>
+            <span class="h-bangla">${item.bangla}</span>
+        </div>
+    `).join('');
+}
+
+window.loadHistory = (text) => {
+    banglishInput.value = text;
+    charCount.textContent = `${text.length} characters`;
+    convertText(text);
+};
 
 // Voice Input (Web Speech API)
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -76,6 +107,11 @@ async function convertText(text) {
         });
         const data = await response.json();
         banglaOutput.value = data.converted;
+        
+        // Save to history only if it's a short phrase (to avoid clutter)
+        if (text.length < 100) {
+            saveToHistory(text, data.converted);
+        }
     } catch (error) {
         console.error('Conversion error:', error);
     }

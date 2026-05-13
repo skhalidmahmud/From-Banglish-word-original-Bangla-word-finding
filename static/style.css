@@ -344,6 +344,54 @@ textarea:focus {
     transform: translateX(-50%) translateY(0);
 }
 
+/* History Section */
+.history-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.history-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.history-item {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    min-width: 100px;
+}
+
+.history-item:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.h-banglish {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.history-item:hover .h-banglish {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.h-bangla {
+    font-size: 1rem;
+    font-family: 'Hind Siliguri', sans-serif;
+    color: var(--text-main);
+}
+
 /* Responsive */
 @media (max-width: 640px) {
     h1 { font-size: 2.5rem; }

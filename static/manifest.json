@@ -1,0 +1,17 @@
+{
+  "name": "Banglish to Bangla Converter",
+  "short_name": "Banglish",
+  "description": "Smart Phonetic Transliteration Engine",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3203/3203925.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

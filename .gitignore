@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.vscode/
+.env
+data/ben2bn.csv

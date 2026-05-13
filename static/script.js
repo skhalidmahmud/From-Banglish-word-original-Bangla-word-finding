@@ -7,7 +7,47 @@ const toast = document.getElementById('toast');
 const statWords = document.getElementById('stat-words');
 const statKnown = document.getElementById('stat-known');
 
+const voiceBtn = document.getElementById('voice-btn');
+
 let debounceTimer;
+
+// Voice Input (Web Speech API)
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (SpeechRecognition) {
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'en-US'; // English script for Banglish
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.onstart = () => {
+        voiceBtn.classList.add('recording');
+    };
+
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        banglishInput.value += (banglishInput.value ? ' ' : '') + transcript;
+        charCount.textContent = `${banglishInput.value.length} characters`;
+        convertText(banglishInput.value);
+    };
+
+    recognition.onend = () => {
+        voiceBtn.classList.remove('recording');
+    };
+
+    recognition.onerror = () => {
+        voiceBtn.classList.remove('recording');
+    };
+
+    voiceBtn.addEventListener('click', () => {
+        if (voiceBtn.classList.contains('recording')) {
+            recognition.stop();
+        } else {
+            recognition.start();
+        }
+    });
+} else {
+    voiceBtn.style.display = 'none';
+}
 
 // Fetch stats on load
 async function fetchStats() {

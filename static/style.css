@@ -174,6 +174,44 @@ textarea:focus {
     color: var(--text-muted);
 }
 
+.btn-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.icon-btn-small {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.icon-btn-small:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.icon-btn-small.recording {
+    background: #ef4444;
+    color: white;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+    animation: pulse-red 1.5s infinite;
+}
+
+@keyframes pulse-red {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
 .text-btn {
     background: none;
     border: none;

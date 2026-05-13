@@ -12,6 +12,9 @@ class BanglishConverter:
         self.b2b_map = {}
         self.generator_map = {}
         self.word_lists = []
+        # Bengali Vowels (phonetic keys)
+        self.vowels = {'a', 'aa', 'i', 'ii', 'u', 'uu', 'oo', 'ri', 'e', 'oi', 'o', 'ou'}
+        self.hasanta = '্'
         self.load_data()
 
     def load_data(self):
@@ -33,7 +36,10 @@ class BanglishConverter:
                 if not row or not row[0]: continue
                 eng = row[0].lower()
                 bangla_options = [x.strip() for x in row[1:] if x.strip() and x.strip() != '""']
-                self.generator_map[eng] = bangla_options
+                if eng in self.generator_map:
+                    self.generator_map[eng].extend(bangla_options)
+                else:
+                    self.generator_map[eng] = bangla_options
 
         # 3. Load Word Lists (The "dictionaries")
         for list_name in ['BengaliWordList_40.txt', 'BengaliWordList_48.txt', 
@@ -65,6 +71,9 @@ class BanglishConverter:
                 i += 1
         return parts
 
+    def is_consonant(self, phoneme):
+        return phoneme in self.generator_map and phoneme not in self.vowels
+
     def is_valid_word(self, word):
         """Checks if the generated Bangla word exists in any of our dictionaries."""
         for w_list in self.word_lists:
@@ -88,30 +97,54 @@ class BanglishConverter:
         if not phonemes:
             return banglish_word
 
-        # Simple recursive generator to try combinations
-        candidates = [""]
+        # Advanced candidate generation with conjunct support
+        # candidates store tuple: (string, last_phoneme_was_consonant)
+        candidates = [("", False)] 
+        
         for p in phonemes:
             new_candidates = []
-            options = self.generator_map.get(p, [p]) # Fallback to original if not found
+            options = self.generator_map.get(p, [p])
+            is_curr_cons = self.is_consonant(p)
             
-            for cand in candidates:
+            for cand_str, last_was_cons in candidates:
                 for opt in options:
-                    new_candidates.append(cand + opt)
-            candidates = new_candidates
+                    # Special logic for 'a' -> 'অ' (Implicit vowel after consonant)
+                    current_opt = opt
+                    if p == 'a' and opt == 'অ' and last_was_cons:
+                        current_opt = "" # Implicit
+                    
+                    # Option A: Standard concatenation
+                    new_candidates.append((cand_str + current_opt, is_curr_cons))
+                    
+                    # Option B: Try Conjunct (Add Hasanta) if both are consonants
+                    if last_was_cons and is_curr_cons:
+                        # Bengali conjuncts are formed by Consonant + Hasanta + Consonant
+                        # Note: Some phonemes in generator_map might already end in Hasanta
+                        if not cand_str.endswith(self.hasanta):
+                            new_candidates.append((cand_str + self.hasanta + opt, is_curr_cons))
             
-            # To prevent memory explosion, we limit candidates
-            if len(candidates) > 500:
-                candidates = candidates[:500]
+            # Update and prune candidates to avoid explosion
+            candidates = new_candidates
+            if len(candidates) > 10000:
+                # Prioritize shorter ones or just slice
+                candidates = candidates[:10000]
 
         # Step 3: Find the first candidate that is a real Bangla word
-        for cand in candidates:
-            if self.is_valid_word(cand):
-                # Learning: Save it to our b2b map for next time!
-                self.save_new_mapping(banglish_word, cand)
-                return cand
+        # We sort by length to favor natural joins if possible, 
+        # but dictionary validation is the primary filter.
+        valid_candidates = []
+        for cand_str, _ in candidates:
+            if self.is_valid_word(cand_str):
+                valid_candidates.append(cand_str)
         
-        # If nothing found, return the first "best guess"
-        return candidates[0] if candidates else banglish_word
+        if valid_candidates:
+            # Pick the shortest valid one (usually the most correct conjunct form)
+            best = min(valid_candidates, key=len)
+            self.save_new_mapping(banglish_word, best)
+            return best
+        
+        # If nothing found in dictionary, return the first "best guess"
+        return candidates[0][0] if candidates else banglish_word
 
     def convert_sentence(self, text):
         """Converts a full sentence of Banglish text to Bangla."""
